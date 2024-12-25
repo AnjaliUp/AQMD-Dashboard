@@ -9,9 +9,9 @@ body {
 
 /* Dashboard Container */
 .dashboard {
-  padding: 10px; /* Minimal padding around the dashboard */
-  max-width: 1200px; /* Limit the overall width */
-  margin: 0 auto; /* Center the dashboard */
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -20,26 +20,26 @@ h1 {
   color: #2c3e50;
   font-size: 28px;
   font-weight: bold;
-  margin-bottom: 15px; /* Reduced space below the title */
+  margin-bottom: 15px;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
   display: inline-block;
-  padding: 10px 15px; /* Smaller padding inside the title box */
+  padding: 10px 15px;
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; /* Center the title horizontally */
+  margin: 0 auto;
 }
 
 /* Charts Container */
 .charts-container {
   display: grid;
-  gap: 12px; /* Slight space between graphs */
-  padding: 5px; /* Minimal padding around the charts */
+  gap: 12px;
+  padding: 5px;
   box-sizing: border-box;
-  margin-left: 5px; /* Reduce extra left margin */
-  margin-right: 5px; /* Reduce extra right margin */
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 /* Individual Chart Container Styling */
@@ -49,7 +49,7 @@ h1 {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background: white;
-  padding: 8px; /* Slight padding inside each chart */
+  padding: 8px;
   margin: 0 auto;
 }
 
@@ -58,11 +58,11 @@ h1 {
 /* For Laptops and Desktops */
 @media (min-width: 768px) {
   .charts-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 graphs in a row */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   h1 {
-    margin-left: auto; /* Ensure the title is centered */
+    margin-left: auto;
     margin-right: auto;
   }
 }
@@ -70,18 +70,20 @@ h1 {
 /* For Phones and Small Screens */
 @media (max-width: 767px) {
   .charts-container {
-    grid-template-columns: 1fr; /* 1 graph in a row */
+    grid-template-columns: 1fr; /* 1 graph per row */
   }
 
   h1 {
-    font-size: 22px; /* Smaller font size for the title */
+    font-size: 22px;
     margin-bottom: 10px;
-    margin-left: auto; /* Center the title horizontally */
+    margin-left: auto;
     margin-right: auto;
   }
 
   .chart-container {
-    height: 250px; /* Smaller height for better fit on phones */
+    height: 400px; /* Increased height for better visibility */
     padding: 5px;
+    width: 95%; /* Use more width to make the graph full */
+    margin: 0 auto;
   }
 }
