@@ -13,22 +13,26 @@ import {
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend);
 
-const Chart = ({ title, data, color, fieldIndex }) => {
-  const recentData = data.slice(-10);
+const Chart = ({ title, data, color }) => {
+  // Extract and sanitize labels and data
+  const labels = data.map((entry) => entry.time); // Extract labels
+  const values = data
+    .map((entry) => {
+      if (entry.value === null || entry.value === undefined || isNaN(entry.value)) {
+        console.warn("Invalid value detected:", entry.value);
+        return null; // Filter out invalid values
+      }
+      return parseFloat(entry.value); // Convert to numbers
+    })
+    .filter((value) => value !== null); // Remove invalid entries
 
-  const currentTimestamp = new Date(); // Current timestamp
-  const labels = Array.from({ length: 10 }).map((_, i) => {
-    const time = new Date(currentTimestamp);
-    time.setHours(currentTimestamp.getHours() - (9 - i)); // Set hour intervals
-    return time.toLocaleTimeString();
-  });
-
+  // Prepare chart data
   const chartData = {
     labels,
     datasets: [
       {
         label: title,
-        data: recentData.map((entry) => parseFloat(entry[`field${fieldIndex}`]) || 0),
+        data: values,
         borderColor: color,
         backgroundColor: `${color}50`,
         tension: 0.4,
@@ -38,16 +42,35 @@ const Chart = ({ title, data, color, fieldIndex }) => {
     ],
   };
 
+  // Chart options
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: { display: true },
     },
     scales: {
-      x: { title: { display: true, text: "Time" } },
-      y: { title: { display: true, text: title } },
+      x: {
+        title: { display: true, text: "Time" },
+        ticks: {
+          maxRotation: 45,
+          minRotation: 0,
+        },
+      },
+      y: {
+        title: { display: true, text: title },
+        min: -1, // Set minimum Y-axis value
+        max: 1,  // Set maximum Y-axis value
+        ticks: {
+          stepSize: 0.5, // Control the interval between ticks
+          callback: (value) => value.toFixed(1), // Format tick labels
+        },
+      },
     },
   };
+
+  console.log("Input data:", data);
+  console.log("Processed chart data:", chartData);
 
   return (
     <div className="chart-container">

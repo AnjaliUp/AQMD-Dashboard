@@ -29,7 +29,6 @@ h1 {
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  margin: 0 auto;
 }
 
 /* Charts Container */
@@ -38,13 +37,13 @@ h1 {
   gap: 12px;
   padding: 5px;
   box-sizing: border-box;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 0 auto;
 }
 
 /* Individual Chart Container Styling */
 .chart-container {
   width: 100%;
+  max-width: 500px; /* Limit maximum chart width for consistent layout */
   height: 300px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -58,32 +57,23 @@ h1 {
 /* For Laptops and Desktops */
 @media (min-width: 768px) {
   .charts-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  h1 {
-    margin-left: auto;
-    margin-right: auto;
+    grid-template-columns: repeat(2, 1fr); /* Display 2 graphs per row */
+    justify-content: center; /* Center the grid content */
   }
 }
 
 /* For Phones and Small Screens */
 @media (max-width: 767px) {
   .charts-container {
-    grid-template-columns: 1fr; /* 1 graph per row */
+    grid-template-columns: 1fr; /* Display 1 graph per row */
   }
 
   h1 {
     font-size: 22px;
     margin-bottom: 10px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .chart-container {
-    height: 400px; /* Increased height for better visibility */
-    padding: 5px;
-    width: 95%; /* Use more width to make the graph full */
-    margin: 0 auto;
+    height: 250px; /* Adjust height for better fit on small screens */
   }
 }
